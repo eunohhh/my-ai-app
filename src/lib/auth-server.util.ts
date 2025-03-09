@@ -2,6 +2,7 @@ import { getMe } from "@/apis/auth.api";
 import { QUERY_KEY_ME } from "@/constants/auth.constants";
 import { User } from "@supabase/supabase-js";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
+import { createClient } from "./supabase/server";
 
 export const prefetchMe = async () => {
   const queryClient = new QueryClient();
@@ -14,4 +15,13 @@ export const prefetchMe = async () => {
   const dehydratedState = dehydrate(queryClient);
 
   return { me, dehydratedState };
+};
+
+export const getMeServer = async () => {
+  const supabase = await createClient();
+  const { data, error } = await supabase.auth.getUser();
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data.user;
 };
