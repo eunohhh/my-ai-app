@@ -1,9 +1,9 @@
-import { updateSession } from '@/lib/supabase/middleware'
-import { NextRequest } from 'next/server'
+import { updateSession } from "@/lib/supabase/middleware";
+import { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {
   // update user's auth session
-  return await updateSession(request)
+  return await updateSession(request);
 }
 
 export const config = {
@@ -19,6 +19,6 @@ export const config = {
      * - .*\\.(?:svg|png|jpg|jpeg|gif|webp) (image files)
      * Feel free to modify this pattern to include more paths.
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    "/((?!api|signin|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
-}
+};

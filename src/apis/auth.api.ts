@@ -1,3 +1,4 @@
+import { createClient } from "@/lib/supabase/client";
 import { SignOutResponse } from "@/types/auth.type";
 import { User } from "@supabase/supabase-js";
 import api from "./axios.api";
@@ -10,6 +11,15 @@ export const deleteSignOut = () => {
 export const getMe = () => {
   const url = "/api/auth/me";
   return api.get<User, User>(url);
+};
+
+export const getMeClient = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getSession();
+  if (error) {
+    throw new Error(error.message);
+  }
+  return data.session;
 };
 
 export const getProviderLogin = (provider: string, next?: string) => {
