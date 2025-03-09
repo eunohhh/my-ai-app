@@ -1,9 +1,12 @@
-"use client";
+import { generateUUID } from "@/lib/utils";
+import { cookies } from "next/headers";
 
-import { useAuth } from "@/hooks/auth.hook";
 
-function ChatPage() {
-  const { me } = useAuth();
+async function ChatPage() {
+  const id = generateUUID();
+
+  const cookieStore = await cookies();
+  const modelIdFromCookie = cookieStore.get('chat-model');
 
   return <div>ChatPage</div>;
 }
