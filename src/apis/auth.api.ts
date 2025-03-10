@@ -4,7 +4,7 @@ import { User } from "@supabase/supabase-js";
 import api from "./axios.api";
 
 export const deleteSignOut = () => {
-  const url = "/api/auth/signout";
+  const url = "/api/auth/logout";
   return api.delete<SignOutResponse, SignOutResponse>(url);
 };
 

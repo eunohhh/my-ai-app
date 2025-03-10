@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   useSidebar,
@@ -14,6 +15,7 @@ import {
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { SidebarHistory } from "./sidebar-history";
+import { SidebarUserNav } from "./sidebar-user-nav";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function AppSidebar({ me }: { me: User | null }) {
@@ -57,7 +59,7 @@ export function AppSidebar({ me }: { me: User | null }) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>{me && <SidebarHistory me={me} />}</SidebarContent>
-      {/* <SidebarFooter>{me && <SidebarUserNav me={me} />}</SidebarFooter> */}
+      <SidebarFooter>{me && <SidebarUserNav me={me} />}</SidebarFooter>
     </Sidebar>
   );
 }

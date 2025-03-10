@@ -11,6 +11,7 @@ import { SignOutResponse } from "@/types/auth.type";
 import { Session, User } from "@supabase/supabase-js";
 import type { UseMutationResult, UseQueryResult } from "@tanstack/react-query";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 export function useMeQuery(): UseQueryResult<User, Error> {
@@ -25,7 +26,6 @@ export function useMeClientQuery(): UseQueryResult<Session | null, Error> {
     queryKey: [QUERY_KEY_ME],
     queryFn: async () => {
       const session = await getMeClient();
-      console.log("session =====>", session);
       return session;
     },
   });
@@ -36,11 +36,13 @@ export function useSignOutMutation(): UseMutationResult<
   Error,
   void
 > {
+  const router = useRouter();
   const queryClient = useQueryClient();
   return useMutation<SignOutResponse, Error, void>({
     mutationFn: deleteSignOut,
     onSuccess: () => {
       queryClient.setQueryData([QUERY_KEY_ME], null);
+      router.refresh();
     },
   });
 }
