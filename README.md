@@ -37,7 +37,7 @@ A modern AI chat application built with Next.js and Vercel AI SDK, supporting mu
    ```
 4. Run the development server:
    ```bash
-   pnpm dev dev
+   pnpm dev
    ```
 5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
