@@ -1,2 +1,5 @@
+echo 'export PATH=$PATH:$(dirname $(which pnpm))' | tee -a .husky/pre-push
+chmod +x .husky/pre-push
+
 pnpm format
 pnpm build || exit 1
