@@ -1,4 +1,4 @@
-import type { Message as DBMessage } from "@/types/db.type";
+import type { DBMessage } from "@/types/db.type";
 import type { Json } from "@/types/supabase";
 import type {
   CoreAssistantMessage,
@@ -23,7 +23,7 @@ export const fetcher = async (url: string) => {
 
   if (!res.ok) {
     const error = new Error(
-      "An error occurred while fetching the data.",
+      "An error occurred while fetching the data."
     ) as ApplicationError;
 
     error.info = await res.json();
@@ -63,7 +63,7 @@ function addToolMessageToChat({
         ...message,
         toolInvocations: message.toolInvocations.map((toolInvocation) => {
           const toolResult = toolMessage.content.find(
-            (tool) => tool.toolCallId === toolInvocation.toolCallId,
+            (tool) => tool.toolCallId === toolInvocation.toolCallId
           );
 
           if (toolResult) {
@@ -97,12 +97,12 @@ function isToolContent(content: Json): content is Array<{
       typeof (item as any).type === "string" &&
       typeof (item as any).toolCallId === "string" &&
       typeof (item as any).toolName === "string" &&
-      "result" in item,
+      "result" in item
   );
 }
 
 export function convertToUIMessages(
-  messages: Array<DBMessage>,
+  messages: Array<DBMessage>
 ): Array<Message> {
   return messages.reduce((chatMessages: Array<Message>, message) => {
     if (
@@ -123,11 +123,15 @@ export function convertToUIMessages(
     let textContent = "";
     let reasoning: string | undefined = undefined;
     const toolInvocations: Array<ToolInvocation> = [];
+    const parsedContent =
+      typeof message.content === "string"
+        ? JSON.parse(message.content)
+        : message.content;
 
-    if (typeof message.content === "string") {
-      textContent = message.content;
-    } else if (Array.isArray(message.content) && message.content) {
-      for (const content of message.content) {
+    if (typeof parsedContent === "string") {
+      textContent = parsedContent;
+    } else if (Array.isArray(parsedContent) && parsedContent) {
+      for (const content of parsedContent) {
         if (content && typeof content === "object" && "type" in content) {
           if (content.type === "text" && "text" in content) {
             textContent += content.text;
@@ -194,7 +198,7 @@ export function sanitizeResponseMessages({
         ? toolResultIds.includes(content.toolCallId)
         : content.type === "text"
           ? content.text.length > 0
-          : true,
+          : true
     );
 
     if (reasoning) {
@@ -209,7 +213,7 @@ export function sanitizeResponseMessages({
   });
 
   return messagesBySanitizedContent.filter(
-    (message) => message.content.length > 0,
+    (message) => message.content.length > 0
   );
 }
 
@@ -230,7 +234,7 @@ export function sanitizeUIMessages(messages: Array<Message>): Array<Message> {
     const sanitizedToolInvocations = message.toolInvocations.filter(
       (toolInvocation) =>
         toolInvocation.state === "result" ||
-        toolResultIds.includes(toolInvocation.toolCallId),
+        toolResultIds.includes(toolInvocation.toolCallId)
     );
 
     return {
@@ -242,7 +246,7 @@ export function sanitizeUIMessages(messages: Array<Message>): Array<Message> {
   return messagesBySanitizedToolInvocations.filter(
     (message) =>
       message.content.length > 0 ||
-      (message.toolInvocations && message.toolInvocations.length > 0),
+      (message.toolInvocations && message.toolInvocations.length > 0)
   );
 }
 

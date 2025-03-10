@@ -16,7 +16,7 @@ export async function saveChat({
   try {
     return await supabase.from("chat").insert({
       id,
-      createdAt: new Date(),
+      created_at: new Date().toISOString(),
       userId,
       title,
     });
@@ -46,7 +46,7 @@ export async function getChatsByUserId({ id }: { id: string }) {
       .from("chat")
       .select()
       .eq("userId", id)
-      .order("createdAt", { ascending: false });
+      .order("created_at", { ascending: false });
   } catch (error) {
     console.error("Failed to get chats by user from database");
     throw error;
@@ -85,7 +85,7 @@ export async function getMessagesByChatId({ id }: { id: string }) {
       .from("message")
       .select()
       .eq("chatId", id)
-      .order("createdAt", { ascending: true });
+      .order("created_at", { ascending: true });
   } catch (error) {
     console.error("Failed to get messages by chat id from database", error);
     throw error;
@@ -299,7 +299,7 @@ export async function deleteMessagesByChatIdAfterTimestamp({
     }
   } catch (error) {
     console.error(
-      "Failed to delete messages by id after timestamp from database",
+      "Failed to delete messages by id after timestamp from database"
     );
     throw error;
   }

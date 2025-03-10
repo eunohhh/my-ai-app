@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/sidebar";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
+import { SidebarHistory } from "./sidebar-history";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function AppSidebar({ me }: { me: User | null }) {
@@ -55,7 +56,7 @@ export function AppSidebar({ me }: { me: User | null }) {
           </div>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>{/* <SidebarHistory me={me} /> */}</SidebarContent>
+      <SidebarContent>{me && <SidebarHistory me={me} />}</SidebarContent>
       {/* <SidebarFooter>{me && <SidebarUserNav me={me} />}</SidebarFooter> */}
     </Sidebar>
   );

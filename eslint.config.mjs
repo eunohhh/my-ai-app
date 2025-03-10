@@ -10,11 +10,20 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: [
+      "**/components/ui/**",
+      "**/types/**",
+      "node_modules/**",
+      "dist/**",
+      ".next/**", // .next 폴더 무시
+    ],
+  },
   ...compat.extends(
     "next/core-web-vitals",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "prettier",
+    "prettier"
   ),
   {
     settings: {
@@ -24,7 +33,6 @@ const eslintConfig = [
         },
       },
     },
-    ignores: ["**/components/ui/**"],
   },
 ];
 

@@ -5,7 +5,7 @@ import { VisibilityType } from "@/components/visibility-selector";
 import { Chat } from "@/types/db.type";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { useChatHistory } from "./chat.hook";
+import { useChatHistoryQuery } from "./chat.hook";
 
 export function useChatVisibility({
   chatId,
@@ -14,7 +14,7 @@ export function useChatVisibility({
   chatId: string;
   initialVisibility: VisibilityType;
 }) {
-  const { data: history } = useChatHistory();
+  const { data: response } = useChatHistoryQuery();
   const queryClient = useQueryClient();
 
   const { data: localVisibility } = useQuery({
@@ -24,11 +24,11 @@ export function useChatVisibility({
   });
 
   const visibilityType = useMemo(() => {
-    if (!history) return localVisibility;
-    const chat = history.find((chat) => chat.id === chatId);
+    if (!response) return localVisibility;
+    const chat = response?.data?.find((chat) => chat.id === chatId);
     if (!chat) return "private";
     return chat.visibility;
-  }, [history, chatId, localVisibility]);
+  }, [response, chatId, localVisibility]);
 
   const setVisibilityType = (updatedVisibilityType: VisibilityType) => {
     queryClient.setQueryData([`${chatId}-visibility`], updatedVisibilityType);

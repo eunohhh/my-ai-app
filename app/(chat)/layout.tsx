@@ -10,7 +10,6 @@ async function ChatLayout({ children }: { children: React.ReactNode }) {
   const isCollapsed = cookieStore.get("sidebar:state")?.value !== "true";
 
   const me = await getMeServer();
-  // console.log("me =====>", me);
 
   return (
     <>
