@@ -299,7 +299,7 @@ export async function deleteMessagesByChatIdAfterTimestamp({
     }
   } catch (error) {
     console.error(
-      "Failed to delete messages by id after timestamp from database"
+      "Failed to delete messages by id after timestamp from database",
     );
     throw error;
   }
