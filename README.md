@@ -1,49 +1,55 @@
-# AI Chat Application
+# AI 채팅 애플리케이션
 
-A modern AI chat application built with Next.js and Vercel AI SDK, supporting multiple AI models including GPT and Grok.
+Next.js와 Vercel AI SDK를 사용하여 제작된 AI 채팅 애플리케이션으로, GPT 및 Grok을 포함한 여러 AI 모델을 지원합니다.
 
-## Features
+## 주요 기능
 
-- Real-time streaming chat interface
-- Support for multiple AI models:
-  - GPT-4 (via OpenAI)
-  - Grok (via xAI)
-- Persistent chat history with Supabase
-- Modern UI with Tailwind CSS
-- Server-side rendering with Next.js 14
+- 실시간 스트리밍 채팅 인터페이스
+- 다양한 AI 모델 지원:
+  - GPT-4 (OpenAI)
+  - Grok (xAI)
+- Supabase를 이용한 채팅 기록 저장
+- Tailwind CSS 기반의 최신 UI
+- Next.js 15을 활용한 서버 사이드 렌더링
 
-## Tech Stack
+## 기술 스택
 
-- **Framework**: Next.js 14
+- **프레임워크**: Next.js 15
 - **AI SDK**: Vercel AI SDK
-- **Database**: Supabase
-- **Styling**: Tailwind CSS
-- **UI Components**: shadcn/ui
-- **Authentication**: Supabase Auth
+- **데이터베이스**: Supabase
+- **스타일링**: Tailwind CSS
+- **UI 컴포넌트**: shadcn/ui
+- **인증**: Supabase Auth
 
-## Getting Started
+## 시작하기
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
+1. 저장소를 클론합니다.
+2. 의존성을 설치합니다:
+
+```bash
    pnpm install
-   ```
-3. Set up environment variables in `.env.local`:
-   ```
+```
+
+3. 환경 변수를 .env.local 파일에 설정합니다:
+
+```
    OPENAI_API_KEY=your_openai_api_key
    XAI_API_KEY=your_xai_api_key
    SUPABASE_URL=your_supabase_url
    SUPABASE_ANON_KEY=your_supabase_anon_key
-   ```
-4. Run the development server:
-   ```bash
+```
+
+4. 개발 서버를 시작합니다:
+
+```bash
    pnpm dev
-   ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser
+```
 
-## Project Structure
+5. 브라우저에서 http://localhost:3000 을 엽니다.
 
-- `/app` - Next.js app router pages and API routes
-- `/components` - React components
-- `/lib` - Utility functions and AI providers
-- `/types` - TypeScript type definitions
+## 프로젝트 구조
+
+- /app - Next.js 앱 라우터 페이지 및 API 라우트
+- /components - React 컴포넌트
+- /lib - 유틸리티 함수 및 AI 제공자
+- /types - TypeScript 타입 정의
