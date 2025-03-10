@@ -2,7 +2,6 @@
 
 import { startTransition, useMemo, useOptimistic, useState } from "react";
 
-import { saveChatModelAsCookie } from "@/app/(chat)/actions";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -13,6 +12,7 @@ import {
 import { chatModels } from "@/lib/ai/models";
 import { cn } from "@/lib/utils";
 
+import { saveChatModelAsCookie } from "@/(chat)/actions";
 import { CheckCircleFillIcon, ChevronDownIcon } from "./icons";
 
 export function ModelSelector({
@@ -22,7 +22,8 @@ export function ModelSelector({
   selectedModelId: string;
 } & React.ComponentProps<typeof Button>) {
   const [open, setOpen] = useState(false);
-  const [optimisticModelId, setOptimisticModelId] = useOptimistic(selectedModelId);
+  const [optimisticModelId, setOptimisticModelId] =
+    useOptimistic(selectedModelId);
 
   const selectedChatModel = useMemo(
     () => chatModels.find((chatModel) => chatModel.id === optimisticModelId),
@@ -63,7 +64,9 @@ export function ModelSelector({
             >
               <div className="flex flex-col gap-1 items-start">
                 <div>{chatModel.name}</div>
-                <div className="text-xs text-muted-foreground">{chatModel.description}</div>
+                <div className="text-xs text-muted-foreground">
+                  {chatModel.description}
+                </div>
               </div>
 
               <div className="text-foreground dark:text-foreground opacity-0 group-data-[active=true]/item:opacity-100">

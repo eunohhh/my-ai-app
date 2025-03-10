@@ -10,13 +10,22 @@ import {
   getMessageById,
   updateChatVisiblityById,
 } from "@/lib/db/queries";
+// import {
+//   deleteMessagesByChatIdAfterTimestamp,
+//   getMessageById,
+//   updateChatVisiblityById,
+// } from "@/lib/db/queries";
 
 export async function saveChatModelAsCookie(model: string) {
   const cookieStore = await cookies();
   cookieStore.set("chat-model", model);
 }
 
-export async function generateTitleFromUserMessage({ message }: { message: Message }) {
+export async function generateTitleFromUserMessage({
+  message,
+}: {
+  message: Message;
+}) {
   const { text: title } = await generateText({
     model: myProvider.languageModel("title-model"),
     system: `\n
@@ -31,11 +40,14 @@ export async function generateTitleFromUserMessage({ message }: { message: Messa
 }
 
 export async function deleteTrailingMessages({ id }: { id: string }) {
-  const [message] = await getMessageById({ id });
+  const { data } = await getMessageById({ id });
+  const message = data?.[0];
+
+  if (!message) return;
 
   await deleteMessagesByChatIdAfterTimestamp({
     chatId: message.chatId,
-    timestamp: message.createdAt,
+    timestamp: new Date(message.created_at),
   });
 }
 
