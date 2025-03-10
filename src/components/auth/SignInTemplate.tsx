@@ -19,7 +19,7 @@ function SignInTemplate() {
         <div className="flex flex-col gap-4 px-4 sm:px-16">
           <button
             onClick={handleLoginWithProvider}
-            className="w-full flex flex-row items-center justify-center h-[58px] bg-gray100 rounded-[20px] gap-3 font-medium cursor-pointer"
+            className="w-full flex flex-row items-center justify-center h-[58px] bg-gray100 rounded-[20px] gap-3 font-medium cursor-pointer border-2 border-gray-200"
           >
             <FcGoogle className="w-5 h-5" /> 구글로 시작하기
           </button>
