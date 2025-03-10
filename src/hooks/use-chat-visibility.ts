@@ -2,7 +2,7 @@
 
 import { updateChatVisibility } from "@/(chat)/actions";
 import { VisibilityType } from "@/components/visibility-selector";
-import { CHAT_HISTORY_QUERY_KEY } from "@/constants/chat.constants";
+import { QUERY_KEY_CHAT_HISTORY } from "@/constants/chat.constants";
 import { Chat } from "@/types/db.type";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMemo } from "react";
@@ -35,7 +35,7 @@ export function useChatVisibility({
     queryClient.setQueryData([`${chatId}-visibility`], updatedVisibilityType);
 
     queryClient.setQueryData<Array<Chat>>(
-      [CHAT_HISTORY_QUERY_KEY],
+      [QUERY_KEY_CHAT_HISTORY],
       (oldHistory) => {
         return oldHistory
           ? oldHistory.map((chat) => {
@@ -48,7 +48,7 @@ export function useChatVisibility({
               return chat;
             })
           : [];
-      },
+      }
     );
 
     updateChatVisibility({

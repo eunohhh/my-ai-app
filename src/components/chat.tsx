@@ -8,7 +8,7 @@ import type { Attachment, Message } from "ai";
 import { useState } from "react";
 import { toast } from "sonner";
 // // import { Artifact } from "./artifact";
-import { CHAT_HISTORY_QUERY_KEY } from "@/constants/chat.constants";
+import { QUERY_KEY_CHAT_HISTORY } from "@/constants/chat.constants";
 import { Messages } from "./messages";
 import { MultimodalInput } from "./multimodal-input";
 import { VisibilityType } from "./visibility-selector";
@@ -46,7 +46,7 @@ export function Chat({
     sendExtraMessageFields: true,
     generateId: generateUUID,
     onFinish: () => {
-      queryClient.invalidateQueries({ queryKey: [CHAT_HISTORY_QUERY_KEY] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY_CHAT_HISTORY] });
     },
     onError: () => {
       toast.error("An error occured, please try again!");

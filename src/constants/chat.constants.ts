@@ -1,1 +1,1 @@
-export const CHAT_HISTORY_QUERY_KEY = "chatHistory";
+export const QUERY_KEY_CHAT_HISTORY = "chatHistory";

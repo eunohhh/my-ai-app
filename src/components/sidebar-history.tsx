@@ -45,7 +45,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { CHAT_HISTORY_QUERY_KEY } from "@/constants/chat.constants";
+import { QUERY_KEY_CHAT_HISTORY } from "@/constants/chat.constants";
 import { useChatHistoryQuery } from "@/hooks/chat.hook";
 import { useChatVisibility } from "@/hooks/use-chat-visibility";
 import { Chat } from "@/types/db.type";
@@ -158,7 +158,7 @@ export function SidebarHistory({ me }: { me: User | undefined }) {
   const { data: history, isLoading } = useChatHistoryQuery();
 
   useEffect(() => {
-    queryClient.invalidateQueries({ queryKey: [CHAT_HISTORY_QUERY_KEY] });
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEY_CHAT_HISTORY] });
   }, [pathname, queryClient]);
 
   const [deleteId, setDeleteId] = useState<string | null>(null);
@@ -267,7 +267,7 @@ export function SidebarHistory({ me }: { me: User | undefined }) {
         lastWeek: [],
         lastMonth: [],
         older: [],
-      } as GroupedChats,
+      } as GroupedChats
     );
   };
 
