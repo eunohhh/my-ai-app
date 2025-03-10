@@ -48,7 +48,7 @@ export function useChatVisibility({
               return chat;
             })
           : [];
-      }
+      },
     );
 
     updateChatVisibility({
