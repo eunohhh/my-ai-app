@@ -1,5 +1,4 @@
-echo 'export PATH=$PATH:$(dirname $(which pnpm))' | tee -a .husky/pre-push
-chmod +x .husky/pre-push
-
-pnpm format
-pnpm build || exit 1
+#!/bin/sh
+export PATH=$PATH:/opt/homebrew/bin
+npx pnpm format
+npx pnpm build || exit 1
