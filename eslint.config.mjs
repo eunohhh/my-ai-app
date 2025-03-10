@@ -14,7 +14,7 @@ const eslintConfig = [
     "next/core-web-vitals",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "prettier"
+    "prettier",
   ),
   {
     settings: {

@@ -1,1 +1,3 @@
-pnpm lint
+#!/bin/sh
+export PATH=$PATH:/opt/homebrew/bin
+npx pnpm lint

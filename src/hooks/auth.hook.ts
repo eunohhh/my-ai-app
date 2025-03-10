@@ -1,6 +1,11 @@
 "use client";
 
-import { deleteSignOut, getMe, getMeClient, getProviderLogin } from "@/apis/auth.api";
+import {
+  deleteSignOut,
+  getMe,
+  getMeClient,
+  getProviderLogin,
+} from "@/apis/auth.api";
 import { QUERY_KEY_ME } from "@/constants/auth.constants";
 import { SignOutResponse } from "@/types/auth.type";
 import { Session, User } from "@supabase/supabase-js";
@@ -26,7 +31,11 @@ export function useMeClientQuery(): UseQueryResult<Session | null, Error> {
   });
 }
 
-export function useSignOutMutation(): UseMutationResult<SignOutResponse, Error, void> {
+export function useSignOutMutation(): UseMutationResult<
+  SignOutResponse,
+  Error,
+  void
+> {
   const queryClient = useQueryClient();
   return useMutation<SignOutResponse, Error, void>({
     mutationFn: deleteSignOut,
@@ -36,8 +45,18 @@ export function useSignOutMutation(): UseMutationResult<SignOutResponse, Error, 
   });
 }
 
-export function useProviderLoginQuery({ provider, next }: { provider: string; next: string }) {
-  return useQuery<{ message: string }, Error, { provider: string; next: string }>({
+export function useProviderLoginQuery({
+  provider,
+  next,
+}: {
+  provider: string;
+  next: string;
+}) {
+  return useQuery<
+    { message: string },
+    Error,
+    { provider: string; next: string }
+  >({
     queryKey: [QUERY_KEY_ME, provider, next],
     queryFn: () => getProviderLogin(provider, next),
     enabled: !!provider && !!next,
@@ -47,7 +66,11 @@ export function useProviderLoginQuery({ provider, next }: { provider: string; ne
 export function useAuth() {
   const [error, setError] = useState<Error | null>(null);
   // const { data: me, isLoading: isMeLoading, error: meError } = useMeQuery();
-  const { data: session, isLoading: isMeLoading, error: meError } = useMeClientQuery();
+  const {
+    data: session,
+    isLoading: isMeLoading,
+    error: meError,
+  } = useMeClientQuery();
   const {
     mutate: signOutMutation,
     isPending: isSignOutPending,

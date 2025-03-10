@@ -68,10 +68,17 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
         <QueryProvider>
           <Suspense fallback={<LoaderIcon />}>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
               <Toaster position="top-center" />
               {children}
             </ThemeProvider>

@@ -9,7 +9,7 @@ interface SuggestedActionsProps {
   chatId: string;
   append: (
     message: Message | CreateMessage,
-    chatRequestOptions?: ChatRequestOptions
+    chatRequestOptions?: ChatRequestOptions,
   ) => Promise<string | null | undefined>;
 }
 

@@ -31,10 +31,10 @@ const PurePreviewMessage = ({
   // vote: Vote | undefined;
   isLoading: boolean;
   setMessages: (
-    messages: Message[] | ((messages: Message[]) => Message[])
+    messages: Message[] | ((messages: Message[]) => Message[]),
   ) => void;
   reload: (
-    chatRequestOptions?: ChatRequestOptions
+    chatRequestOptions?: ChatRequestOptions,
   ) => Promise<string | null | undefined>;
   isReadonly: boolean;
   index: number;
@@ -56,7 +56,7 @@ const PurePreviewMessage = ({
             {
               "w-full": mode === "edit",
               "group-data-[role=user]/message:w-fit": mode !== "edit",
-            }
+            },
           )}
         >
           {message.role === "assistant" && (
@@ -245,14 +245,14 @@ export const PreviewMessage = memo(
     if (
       !equal(
         prevProps.message.toolInvocations,
-        nextProps.message.toolInvocations
+        nextProps.message.toolInvocations,
       )
     )
       return false;
     // if (!equal(prevProps.vote, nextProps.vote)) return false;
 
     return true;
-  }
+  },
 );
 
 export const ThinkingMessage = () => {
@@ -270,7 +270,7 @@ export const ThinkingMessage = () => {
           "flex gap-4 group-data-[role=user]/message:px-3 w-full group-data-[role=user]/message:w-fit group-data-[role=user]/message:ml-auto group-data-[role=user]/message:max-w-2xl group-data-[role=user]/message:py-2 rounded-xl",
           {
             "group-data-[role=user]/message:bg-muted": true,
-          }
+          },
         )}
       >
         <div className="size-8 flex items-center rounded-full justify-center ring-1 shrink-0 ring-border">

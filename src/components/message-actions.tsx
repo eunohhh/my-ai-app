@@ -165,5 +165,5 @@ export const MessageActions = memo(
     if (prevProps.isLoading !== nextProps.isLoading) return false;
 
     return true;
-  }
+  },
 );

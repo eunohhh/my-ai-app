@@ -21,11 +21,13 @@ export async function GET(request: Request) {
           },
           setAll(cookiesToSet) {
             try {
-              cookiesToSet.forEach(({ name, value, options }) => cookieStore.set(name, value, options));
+              cookiesToSet.forEach(({ name, value, options }) =>
+                cookieStore.set(name, value, options),
+              );
             } catch {}
           },
         },
-      }
+      },
     );
     const { data, error } = await supabase.auth.exchangeCodeForSession(code);
 
@@ -37,7 +39,8 @@ export async function GET(request: Request) {
         // we can be sure that there is no load balancer in between, so no need to watch for X-Forwarded-Host
         return NextResponse.redirect(`${origin}`);
       } else if (forwardedHost) {
-        if (next) return NextResponse.redirect(`https://${forwardedHost}${next}`);
+        if (next)
+          return NextResponse.redirect(`https://${forwardedHost}${next}`);
         return NextResponse.redirect(`https://${forwardedHost}`);
       } else {
         return NextResponse.redirect(`${origin}${next}`);

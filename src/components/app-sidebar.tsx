@@ -4,7 +4,13 @@ import { useRouter } from "next/navigation";
 
 import { PlusIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
-import { Sidebar, SidebarContent, SidebarHeader, SidebarMenu, useSidebar } from "@/components/ui/sidebar";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarMenu,
+  useSidebar,
+} from "@/components/ui/sidebar";
 import { User } from "@supabase/supabase-js";
 import Link from "next/link";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
